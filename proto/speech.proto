@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+service Transcripter {
+    rpc SpeechToText (Voice) returns (Text) {}
+  }
+  
+  message Voice {
+    string voice_location = 1;
+    string bucket = 2;
+    string text_location = 3;
+    string projectID = 4;
+  }
+  
+  message Text {
+    string text = 1;
+    string condifence = 2;
+  }
+

@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	proto "gcp-ai-demo/proto"
+	proto "github.com/Soypete/gcp-ai-demo/proto"
 
 	"google.golang.org/grpc"
 )
@@ -21,9 +21,9 @@ func main() {
 
 	client := proto.NewTranscripterClient(conn)
 
-	script, conf, err := client.SpeechToText(ctx, &proto.Voice{VoiceLocation: "gs://phone-call-analysis/gong-calls/2019-08-02/../ml-guild-call-analysis/gong-calls/data/1131086855821845180.hi.mp3", Bucket: "phone-call-analysis", TextLocation: "voice-mails", ProjectID: os.Getenv("PROJECT_ID")})
+	p, err := client.SpeechToText(ctx, &proto.Voice{VoiceLocation: os.Getenv("LOCATION"), Bucket: "phone-call-analysis", TextLocation: "voice-mails", ProjectID: os.Getenv("PROJECT_ID")})
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf("Text: %s \n Confidence: %d \n \n")
+	fmt.Printf("Text: %s \n Confidence: %d \n \n", p.Text, p.Confidence)
 }

@@ -5,6 +5,7 @@ import (
 	"fmt"
 
 	language "cloud.google.com/go/language/apiv1"
+	languagepb "google.golang.org/genproto/googleapis/cloud/language/v1"
 	"google.golang.org/grpc"
 )
 
@@ -20,7 +21,10 @@ func analyzeSentiment(ctx context.Context, client *language.Client, text string)
 }
 func main() {
 	ctx := context.Background()
-	client := language.NewClient(ctx, grpc.WithInsecure())
+	client, err := language.NewClient(ctx, grpc.WithInsecure())
+	if err != nil {
+		panic(err)
+	}
 	text := "are you crazy!!! this was supposed to be a kid friendly conference!! "
 	analysis, err := analyzeSentiment(ctx, client, text)
 

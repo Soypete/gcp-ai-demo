@@ -6,7 +6,7 @@ import (
 	"log"
 	"net"
 
-	proto "gcp-ai-demo/proto"
+	proto "github.com/Soypete/gcp-ai-demo/proto"
 
 	speech "cloud.google.com/go/speech/apiv1"
 	speechpb "google.golang.org/genproto/googleapis/cloud/speech/v1"

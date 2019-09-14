@@ -13,6 +13,6 @@ service Transcripter {
   
   message Text {
     string text = 1;
-    string condifence = 2;
+    float confidence = 2;
   }
 

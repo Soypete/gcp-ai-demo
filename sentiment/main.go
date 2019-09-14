@@ -6,7 +6,6 @@ import (
 
 	language "cloud.google.com/go/language/apiv1"
 	languagepb "google.golang.org/genproto/googleapis/cloud/language/v1"
-	"google.golang.org/grpc"
 )
 
 func analyzeSentiment(ctx context.Context, client *language.Client, text string) (*languagepb.AnalyzeSentimentResponse, error) {
@@ -21,12 +20,14 @@ func analyzeSentiment(ctx context.Context, client *language.Client, text string)
 }
 func main() {
 	ctx := context.Background()
-	client, err := language.NewClient(ctx, grpc.WithInsecure())
+	client, err := language.NewClient(ctx)
 	if err != nil {
 		panic(err)
 	}
-	text := "are you crazy!!! this was supposed to be a kid friendly conference!! "
+	text := "I love Ice cream! I hate mosquitos"
 	analysis, err := analyzeSentiment(ctx, client, text)
-
-	fmt.Println(analysis)
+	sentences := analysis.GetSentences()
+	for _, s := range sentences {
+		fmt.Printf("sentence: %v \nlanguage: %v \nsentiment: %v\n", s.GetText(), analysis.GetLanguage(), s.GetSentiment())
+	}
 }

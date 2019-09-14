@@ -25,5 +25,5 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf("Text: %s \n Confidence: %d \n \n", p.Text, p.Confidence)
+	fmt.Printf("Text: %s\nConfidence: %f.02\n", p.GetText(), p.GetConfidence())
 }

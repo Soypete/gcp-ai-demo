@@ -21,9 +21,9 @@ func main() {
 	// sets the name of the image file to annotate.
 	filename := "testdata/max-the-borkie.jpg"
 
-	file, err := os.open(filename)
+	file, err := os.Open(filename)
 	if err != nil {
-		log.fatalf("failed to read file: %v", err)
+		log.Fatalf("failed to read file: %v", err)
 	}
 	defer file.Close()
 	image, err := vision.NewImageFromReader(file)

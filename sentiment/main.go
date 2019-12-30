@@ -24,7 +24,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	text := "I love Ice cream! I hate mosquitos"
+	text := "I love Ice cream! I have a love hate relationship with mosquitos."
 	analysis, err := analyzeSentiment(ctx, client, text)
 	sentences := analysis.GetSentences()
 	for _, s := range sentences {
